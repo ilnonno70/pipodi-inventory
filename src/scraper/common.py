@@ -1,6 +1,7 @@
 import locale
 import logging
 import pathlib
+import html
 
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
@@ -30,6 +31,7 @@ class ScrapeResult(ABC):
             return
 
         price_str = tag if isinstance(tag, str) else tag.text.strip()
+        price_str = html.unescape(price_str).strip()
         if not price_str:
             return
 
@@ -48,7 +50,7 @@ class ScrapeResult(ABC):
 class GenericScrapeResult(ScrapeResult):
     def parse(self):
         # not perfect but usually good enough
-        if self.has_phrase('add to cart') or self.has_phrase('add to basket'):
+        if self.has_phrase('aggiungi al carrello') or self.has_phrase('add to basket'):
             self.alert_subject = 'In Stock'
             self.alert_content = self.url
 
