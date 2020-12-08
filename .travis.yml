@@ -1,10 +1,11 @@
 services: docker
 
 script:
-  - docker build -t pipodi/inventory-hunter .
+  - docker build -t pipodi/inventory-hunter:latest -f Dockerfile .
+  - docker build -t pipodi/inventory-hunter:aarch64 -f Dockerfile-aarch64 .
 
 deploy:
   provider: script
-  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push pipodi/inventory-hunter
+  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && docker push pipodi/inventory-hunter:latest && docker push pipodi/inventory-hunter:aarch64
   on:
     branch: main
