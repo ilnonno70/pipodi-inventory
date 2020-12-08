@@ -30,7 +30,13 @@ class ScrapeResult(ABC):
         if not tag:
             return
 
-        price_str = tag if isinstance(tag, str) else tag.text.strip()
+        if isinstance(tag, str):
+            price_str = tag
+        elif tag is None:
+            # This could be changed with something better with error-handling stuff, but I'm no Python expert
+            return None
+        else:
+            price_str = tag.text.strip()
         price_str = html.unescape(price_str).strip()
         if not price_str:
             return
