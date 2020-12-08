@@ -11,6 +11,7 @@ before_script:
 
 script:
   - docker build -t pipodi/inventory-hunter:aarch64 -f Dockerfile-aarch64 .
+  - docker build -t pipodi/inventory-hunter:latest -f Dockerfile-aarch64 .
 
 deploy:
   provider: script
