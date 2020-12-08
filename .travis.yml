@@ -1,5 +1,4 @@
 arch:
-  - amd64
   - arm64
 
 os: linux
@@ -11,7 +10,6 @@ before_script:
   - chmod +x qemu-aarch64-static
 
 script:
-  - docker build -t pipodi/inventory-hunter:latest -f Dockerfile .
   - docker build -t pipodi/inventory-hunter:aarch64 -f Dockerfile-aarch64 .
 
 deploy:
