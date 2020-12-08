@@ -1,4 +1,5 @@
 FROM balenalib/aarch64-python:3.9
+COPY ./qemu-arm-static /usr/bin/qemu-arm-static
 RUN apt update
 RUN apt install -y chromium chromium-driver locales locales-all
 
