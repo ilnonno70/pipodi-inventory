@@ -50,7 +50,8 @@ class ScrapeResult(ABC):
 class GenericScrapeResult(ScrapeResult):
     def parse(self):
         # not perfect but usually good enough
-        if self.has_phrase('aggiungi al carrello') or self.has_phrase('add to basket'):
+        if self.has_phrase('aggiungi al carrello') or self.has_phrase('in den einkaufswagen') \
+                or self.has_phrase('añadir a la cesta')or self.has_phrase('add to basket'):
             self.alert_subject = 'In Stock'
             self.alert_content = self.url
 
