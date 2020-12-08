@@ -23,7 +23,7 @@ class AmazonScrapeResult(ScrapeResult):
         tag = self.soup.body.select_one('span.a-button-inner > span#submit\\.add-to-cart-announce')
         if tag and 'aggiungi al carrello' in tag.text.lower() or 'in den einkaufswagen' in tag.text.lower() \
                 or 'añadir a la cesta' in tag.text.lower() or 'ajouter au panier' in tag.text.lower()\
-                or 'add to cart' in tag.text.lower():
+                or 'add to cart' in tag.text.lower() or 'add to basket' in tag.text.lower():
             self.alert_subject = alert_subject
             self.alert_content = f'{alert_content.strip()}\n{self.url}'
 
